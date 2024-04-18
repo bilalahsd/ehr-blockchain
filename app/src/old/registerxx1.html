@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HealthChain</title>
+
+    <link href="http://surl.li/swexh" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+            font-family: Arial, sans-serif;
+            padding-top: 200px;
+        }
+
+        .navbar {
+            margin-bottom: 0px;
+            padding: 18px;
+        }
+
+        .panel {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel-heading {
+            background-color: #ffffff6d;
+            color: #000000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            padding-bottom: 0px;
+        }
+
+        .info {
+            color: #ff0000;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .panel-body {
+            padding: 10px;
+        }
+
+        .form-control {
+            border-radius: 20px;
+        }
+
+        .btn-primary {
+            background-color: #0080ff;
+            border-color: #0080ff;
+            width: 30%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0080ff;
+            border-color: #0080ff;
+        }
+
+        .alert {
+            border-radius: 10px;
+        }
+
+        /* Add some margin after the register button */
+        .register-button {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="/js/web3.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">HealthChain</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./index.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./register.html">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Please enter your details to register.</h4>
+            </div>
+            <div class="info">
+                <h6>(Please fill all fields below)</h6>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="alert alert-warning col-sm-8 col-sm-offset-2" style="display: none;">
+                        <strong>Warning!</strong> Invalid public key. Please enter a valid public key to register.
+                    </div>
+
+                    <div class="alert alert-info col-sm-8 col-sm-offset-2" style="display: none;">
+                        <strong>Info!</strong> User already registered. Please check your details.
+                    </div>
+                </div>
+
+                <form name="registerForm" class="form-horizontal" action="./doctor.html">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="Name"
+                                required autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="age">Age:</label>
+                        <div class="col-sm-8">
+                            <input type="age" class="form-control" id="age" placeholder="Enter age" name="Age"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Registering as</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="designation" value="0" required> Patient
+                            </label>
+                            <span style="margin-right: 30px;"></span>
+                            <label class="radio-inline">
+                                <input type="radio" name="designation" value="1"> Doctor
+                            </label>
+                        </div>
+                    </div>
+                    <div id="doctorDetails" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="photo">Photo:</label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" id="photo" name="Photo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="qualification">Qualification:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="qualification" placeholder="Enter qualification"
+                                    name="Qualification" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="posting">Posting:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="posting" placeholder="Enter posting"
+                                    name="Posting" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="department">Department:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="department" placeholder="Enter department"
+                                    name="Department" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="experience">Years of Experience:</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="experience" placeholder="Enter years of experience"
+                                    name="Experience" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="doctormail">Email:</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="doctormail" placeholder="Enter email" name="Email" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="patientFields" style="display: none;">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="photo">Photo:</label>
+                            <div class="col-sm-8">
+                                <input type="file" class="form-control" id="photo" name="Photo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="aadhar">Aadhar Number:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="aadhar" name="aadhar" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="bloodtype">Blood Type:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="bloodtype" name="bloodtype" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="insurance">Health Insurance Number:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="insurance" name="insurance" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="provider">Health Insurance Provider:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="provider" name="provider" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="address">Address:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="address" name="address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="contact">Contact Number:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="contact" name="contact" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="patientmail">Email:</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="patientmail" name="patientmail" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="text-center register-button">
+                    <button class="btn btn-primary btn-lg" onclick="addAgent()">Register</button>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/web3.min.js"></script>
+    <script src="https://unpkg.com/ipfs-api/dist/index.min.js" crossorigin="anonymous"></script>
+
+    <script>
+    function addAgent(){
+
+    var designationValue = $('input[name=designation]:checked').val();
+    if (designationValue === '0') {
+        $('#doctorDetails').hide();
+        $('#patientFields').show();
+    } else if (designationValue === '1') {
+        $('#patientFields').hide();
+        $('#doctorDetails').show();
+    }
+
+        var ipfs = window.IpfsApi('localhost', '5001')
+        const Buffer = window.IpfsApi().Buffer;
+
+        name = $("#name").val();
+        age = $("#age").val();
+        designation = $("#designation").val();
+        designation = parseInt(designation);
+
+        var photo = $("#photo").val();
+        var qualification = $("#qualification").val();
+        var posting = $("#posting").val();
+        var experience = $("#experience").val();
+        var department = $("#department").val();
+        var doctormail = $("#doctormail").val();
+
+        var aadhar = $("#aadhar").val();
+        var bloodtype = $("#bloodtype").val();
+        var insurance = $("#insurance").val();
+        var provider = $("#provider").val();
+        var address = $("#address").val();
+        var contact = $("#contact").val();
+        var patientmail = $("#patientmail").val();
+        
+        publicKey = web3.currentProvider.selectedAddress;
+        publicKey = publicKey.toLowerCase();
+        console.log("PK:"+publicKey);
+
+        var validPublicKey = true;
+        var validAgent = true;
+        var PatientList = 0;
+        var DoctorList = 0;
+        var InsurerList = 0;
+
+        contractInstance.get_patient_list({gas: 1000000},function(error, result){
+            if(!error)
+                PatientList = result; 
+            else
+                console.error(error);
+            });
+
+        contractInstance.get_doctor_list({gas: 1000000},function(error, result){
+            if(!error)
+                DoctorList = result;
+            else
+                console.error(error);
+            });
+
+        contractInstance.get_insurer_list({gas: 1000000},function(error, result){
+            if(!error)
+                InsurerList = result;
+            else
+                console.error(error);
+            });
+
+        if (validPublicKey == false) {
+            $(".alert-warning").show();
+        }
+        else{
+            for(j = 0; j < PatientList.length; j++) {
+                 if (publicKey == PatientList[j] ){
+                     validAgent = false;
+                }
+            }
+            for(j = 0; j < DoctorList.length; j++) {
+                 if (publicKey == DoctorList[j] ){
+                     validAgent = false;
+                }
+            }
+            for(j = 0; j < InsurerList.length; j++) {
+                 if (publicKey == InsurerList[j] ){
+                     validAgent = false;
+                }
+            }
+            console.log(validAgent);
+            if (validAgent == true) {
+                $(".alert-warning").hide()
+                $(".alert-info").hide();   
+                
+                var ipfshash = "";
+
+                if (designation == "0") {
+                    var reportTitle = 
+`Name: ${name}
+Public Key: ${publicKey}
+                            
+`;
+                    var buffer = Buffer(reportTitle);
+                    
+                    ipfs.files.add(buffer, (error, result) => {
+                        if(error){
+                            console.log(error);
+                        }else{
+                            console.log("result:"+result);
+                            ipfshash = result[0].hash;
+                            console.log("Ipfs hash:"+ipfshash);
+                            contractInstance.add_agent(name, age, designation, ipfshash, {gas: 1000000}, (err, res) => {
+                                if(!err){
+                                    location.replace("./patient.html");
+                                }else{
+                                    console.log(err);
+                                }
+                                
+                            })
+                        }
+                    })
+                }else{
+                    contractInstance.add_agent(name, age, designation, ipfshash, {gas: 1000000}, (err, res) => {
+                    if (!err) {
+                        if (designation == "1") {
+                            location.replace("./doctor.html");
+                        }
+                        
+                    } else
+                        console.log(err);
+                    });
+                }              
+            }
+            else {
+                $(".alert-info").show();
+            } 
+
+        }
+
+        return false;
+    }
+    </script>
+</body>
+
+</html>
