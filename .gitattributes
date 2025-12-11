@@ -1,0 +1,19 @@
+*.sol linguist-detectable=true
+*.sol linguist-language=Solidity
+
+app/src/js/bootstrap.js linguist-vendored
+app/src/js/bootstrap.min.js linguist-vendored
+app/src/js/jquery.js linguist-vendored
+app/src/js/web3.min.js linguist-vendored
+
+app/src/js/bundle.js linguist-generated
+
+app/src/old/** linguist-documentation
+
+*.png linguist-documentation
+*.ico linguist-documentation
+*.svg linguist-documentation
+*.eot linguist-documentation
+*.ttf linguist-documentation
+*.woff linguist-documentation
+*.woff2 linguist-documentation
